@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,7 +45,7 @@ public class UserController {
 		User obj = service.fromUser(objDTO);
 		obj = service.insert(obj);
 		
-		// Retorna após uma inserção a URI contendo o ID do USER salvo no BD
+		// Retorna após uma inserção a URI contendo o ID do USER no corpo da requisição
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();	
 		return ResponseEntity.created(uri).build();
 	}
@@ -54,5 +55,11 @@ public class UserController {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
-	
+	@PutMapping(value = "/{id}")
+	public ResponseEntity <Void> update(@RequestBody UserDTO objDTO,@PathVariable String id){
+		User obj = service.fromUser(objDTO);
+		obj.setId(id);// Garantir o msm ID do corpo da requisição
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
+	}
 }
