@@ -1,6 +1,6 @@
 
 # Web service Spring Boot com MongoDB
-[![NPM](https://img.shields.io/npm/l/react)](https://github.com/Br1106/Workshop-SpringBoot-JPA/blob/main/LICENSE) 
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/Br1106/workshop-spring-boot-mongodb/blob/main/License)
 
 # Sobre o projeto
 
